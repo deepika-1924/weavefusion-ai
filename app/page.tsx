@@ -69,7 +69,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="bg-loom-cream">
+    <div className="bg-loom-cream font-sans">
 
       {/* ── Section 1: Cinematic hero ──────────────────────────────────── */}
       <AwarenessIntro />
@@ -111,14 +111,17 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-4"
+            className="font-sans text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-4"
           >
             Try it yourself
           </motion.p>
-          <h2 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-loom-ink">
+          {/* Playfair Display — primary section heading */}
+          <h2 className="font-display font-bold leading-tight tracking-tight text-loom-ink
+                         text-4xl sm:text-5xl">
             See it for yourself
           </h2>
-          <p className="mt-4 text-base sm:text-lg leading-relaxed text-loom-ink/60 max-w-xl">
+          {/* Cormorant Garamond — lead-in paragraph */}
+          <p className="font-heading mt-4 text-lg sm:text-xl leading-relaxed text-loom-ink/60 max-w-xl">
             Pick a handloom, pick a silhouette, and see what choosing quality
             over quantity actually looks like.
           </p>
@@ -147,7 +150,8 @@ export default function HomePage() {
             {/* Top bar */}
             <header className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-bold text-loom-ink">
+                {/* Cormorant Garamond — generator canvas title */}
+                <h2 className="font-heading text-xl font-semibold text-loom-ink">
                   {selectedHandloom && selectedStyle
                     ? `${selectedHandloom.name} × ${selectedStyle.name}`
                     : "Select a handloom and silhouette to begin"}

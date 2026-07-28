@@ -39,16 +39,17 @@ function StatCounter({
   const { value: count, ref } = useCountUp(value, 1.8);
   return (
     <div className="flex flex-col gap-1">
+      {/* Playfair Display for the count number — carries typographic weight */}
       <span
         ref={ref}
-        className={`text-4xl sm:text-5xl font-bold tabular-nums ${
+        className={`font-display text-4xl sm:text-5xl font-bold tabular-nums ${
           accent ? "text-loom-gold" : "text-loom-ink"
         }`}
       >
         {Math.round(count).toLocaleString()}
-        <span className="text-xl sm:text-2xl font-semibold ml-0.5">{suffix}</span>
+        <span className="font-display text-xl sm:text-2xl font-semibold ml-0.5">{suffix}</span>
       </span>
-      <span className="text-xs text-loom-ink/50 leading-snug">{label}</span>
+      <span className="font-sans text-xs text-loom-ink/50 leading-snug">{label}</span>
     </div>
   );
 }
@@ -263,27 +264,30 @@ export default function ProjectTheme() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-5"
+            className="font-sans text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-5"
           >
             Why it matters to you
           </motion.p>
 
+          {/* Playfair Display — primary section title */}
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-loom-ink mb-5"
+            className="font-display font-bold leading-tight tracking-tight text-loom-ink mb-5
+                       text-4xl sm:text-5xl lg:text-6xl"
           >
             What you wear<br className="hidden sm:block" /> touches everything.
           </motion.h2>
 
+          {/* Cormorant Garamond — sub-heading body intro */}
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.18 }}
-            className="text-base sm:text-lg leading-relaxed text-loom-ink/60 max-w-2xl mb-16"
+            className="font-heading text-lg sm:text-xl leading-relaxed text-loom-ink/65 max-w-2xl mb-16"
           >
             Fabric sits against your skin for hours every day. It shapes how
             you feel, how long it lasts, and what trace it leaves on the world
@@ -300,8 +304,8 @@ export default function ProjectTheme() {
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.65, ease: "easeOut", delay: i * 0.1 }}
               >
-                {/* Topic label */}
-                <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-loom-ink/35 mb-3">
+                {/* Topic label — small caps Inter */}
+                <p className="font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-loom-ink/35 mb-3">
                   {icon}&nbsp;&nbsp;{topic}
                 </p>
 
@@ -311,14 +315,15 @@ export default function ProjectTheme() {
                     intensity={6}
                     className="rounded-xl min-h-[160px]"
                   >
-                    <div className="h-full bg-[#f7f0e8] border border-loom-ink/8 rounded-xl p-4 flex flex-col gap-2">
-                      <span className="text-[9px] uppercase tracking-widest font-bold text-loom-rust/60">
+                    <div className="h-full bg-loom-cream border border-loom-ink/8 rounded-xl p-4 flex flex-col gap-2">
+                      <span className="font-sans text-[9px] uppercase tracking-widest font-bold text-loom-rust/60">
                         Fast fashion
                       </span>
-                      <p className="text-sm font-bold text-loom-ink leading-tight">
+                      {/* Cormorant Garamond for comparison card headlines */}
+                      <p className="font-heading text-base font-semibold text-loom-ink leading-tight">
                         {fast.headline}
                       </p>
-                      <p className="text-xs text-loom-ink/55 leading-relaxed mt-auto">
+                      <p className="font-sans text-xs text-loom-ink/55 leading-relaxed mt-auto">
                         {fast.detail}
                       </p>
                     </div>
@@ -330,13 +335,13 @@ export default function ProjectTheme() {
                     className="rounded-xl min-h-[160px]"
                   >
                     <div className="h-full bg-loom-ink rounded-xl p-4 flex flex-col gap-2">
-                      <span className="text-[9px] uppercase tracking-widest font-bold text-loom-gold/60">
+                      <span className="font-sans text-[9px] uppercase tracking-widest font-bold text-loom-gold/60">
                         Handloom
                       </span>
-                      <p className="text-sm font-bold text-loom-cream leading-tight">
+                      <p className="font-heading text-base font-semibold text-loom-cream leading-tight">
                         {handloom.headline}
                       </p>
-                      <p className="text-xs text-loom-cream/50 leading-relaxed mt-auto">
+                      <p className="font-sans text-xs text-loom-cream/50 leading-relaxed mt-auto">
                         {handloom.detail}
                       </p>
                     </div>
@@ -369,17 +374,19 @@ export default function ProjectTheme() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-5"
+            className="font-sans text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-5"
           >
             The numbers behind it
           </motion.p>
 
+          {/* Cormorant Garamond — secondary section heading */}
           <motion.h3
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
-            className="text-2xl sm:text-3xl font-bold text-loom-ink mb-12 max-w-xl leading-snug"
+            className="font-heading font-semibold text-loom-ink mb-12 max-w-xl leading-snug
+                       text-2xl sm:text-3xl"
           >
             WeaveFusion AI starts with India&apos;s
             104 GI-registered handloom traditions.
@@ -398,7 +405,7 @@ export default function ProjectTheme() {
             >
               <TiltCard intensity={4} className="rounded-2xl h-full">
                 <div className="h-full bg-loom-ink rounded-2xl p-8 flex flex-col justify-between min-h-[200px]">
-                  <p className="text-xs uppercase tracking-widest text-loom-cream/30 font-semibold">
+                  <p className="font-sans text-xs uppercase tracking-widest text-loom-cream/30 font-semibold">
                     Our dataset
                   </p>
                   <div className="mt-6 grid grid-cols-2 gap-8">
@@ -418,13 +425,13 @@ export default function ProjectTheme() {
               variants={tileVariants}
             >
               <TiltCard intensity={5} className="rounded-2xl h-full">
-                <div className="h-full bg-loom-rust rounded-2xl p-6 flex flex-col justify-between min-h-[200px]">
-                  <p className="text-xs uppercase tracking-widest text-loom-cream/50 font-semibold">
+                <div className="h-full bg-loom-maroon rounded-2xl p-6 flex flex-col justify-between min-h-[200px]">
+                  <p className="font-sans text-xs uppercase tracking-widest text-loom-cream/50 font-semibold">
                     Zero electricity
                   </p>
                   <div>
-                    <p className="text-4xl font-bold text-loom-cream mt-4 mb-2">100%</p>
-                    <p className="text-sm text-loom-cream/65 leading-snug">
+                    <p className="font-display text-4xl font-bold text-loom-cream mt-4 mb-2">100%</p>
+                    <p className="font-sans text-sm text-loom-cream/65 leading-snug">
                       powered by human hands — no turbines, no grid, no carbon cost.
                     </p>
                   </div>
@@ -443,7 +450,7 @@ export default function ProjectTheme() {
             >
               <TiltCard intensity={4} className="rounded-2xl h-full">
                 <div className="h-full bg-white border border-[#e5e7eb] rounded-2xl p-6 flex flex-col gap-3 min-h-[220px]">
-                  <p className="text-xs uppercase tracking-widest text-loom-ink/35 font-semibold mb-1">
+                  <p className="font-sans text-xs uppercase tracking-widest text-loom-ink/35 font-semibold mb-1">
                     Featured handlooms
                   </p>
                   <div className="grid grid-cols-2 gap-2 flex-1">
@@ -479,8 +486,8 @@ export default function ProjectTheme() {
               variants={tileVariants}
             >
               <TiltCard intensity={5} className="rounded-2xl h-full">
-                <div className="h-full bg-loom-gold/15 border border-loom-gold/30 rounded-2xl p-6 flex flex-col justify-between min-h-[180px]">
-                  <p className="text-xs uppercase tracking-widest text-loom-ink/40 font-semibold">
+                <div className="h-full bg-loom-emerald/10 border border-loom-emerald/25 rounded-2xl p-6 flex flex-col justify-between min-h-[180px]">
+                  <p className="font-sans text-xs uppercase tracking-widest text-loom-ink/40 font-semibold">
                     Water pollution
                   </p>
                   <div className="mt-4">
@@ -504,7 +511,8 @@ export default function ProjectTheme() {
             >
               <TiltCard intensity={4} className="rounded-2xl h-full">
                 <div className="h-full bg-loom-cream border border-loom-ink/10 rounded-2xl p-6 flex flex-col justify-center min-h-[180px]">
-                  <p className="text-sm leading-relaxed text-loom-ink/70 italic border-l-2 border-loom-rust pl-4">
+                  {/* Cormorant Garamond — pull-quote */}
+                  <p className="font-heading text-lg leading-relaxed text-loom-ink/70 italic border-l-2 border-loom-maroon pl-4">
                     &ldquo;The same model is built to extend to natural-fiber
                     textile heritage anywhere in the world — not just India.&rdquo;
                   </p>

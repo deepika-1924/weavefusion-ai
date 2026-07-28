@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 body {
-  background-color: #f4ecdd;
-  color: #1c1410;
+  /* Ivory background — loom-cream in the new palette */
+  background-color: #F8F6F1;
+  /* Deep charcoal — loom-ink in the new palette */
+  color: #1B1B1B;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }

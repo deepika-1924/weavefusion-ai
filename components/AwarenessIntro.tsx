@@ -135,29 +135,29 @@ export default function AwarenessIntro() {
         aria-hidden
         className="absolute inset-0 pointer-events-none"
       >
-        {/* Woven grid — pure CSS */}
+        {/* Woven grid — pure CSS, royal gold threads */}
         <div
           className="absolute inset-0 opacity-[0.065]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(0deg, #c8963e 0px, transparent 1px, transparent 32px), " +
-              "repeating-linear-gradient(90deg, #c8963e 0px, transparent 1px, transparent 32px)",
+              "repeating-linear-gradient(0deg, #C9A227 0px, transparent 1px, transparent 32px), " +
+              "repeating-linear-gradient(90deg, #C9A227 0px, transparent 1px, transparent 32px)",
           }}
         />
-        {/* Diagonal accent thread */}
+        {/* Diagonal accent thread — maroon */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
             backgroundImage:
-              "repeating-linear-gradient(45deg, #b6502f 0px, transparent 1px, transparent 56px)",
+              "repeating-linear-gradient(45deg, #7B1E3D 0px, transparent 1px, transparent 56px)",
           }}
         />
-        {/* Depth gradient — slightly lighter centre */}
+        {/* Depth gradient */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse 90% 70% at 50% 45%, rgba(28,20,16,0) 20%, rgba(28,20,16,0.7) 100%)",
+              "radial-gradient(ellipse 90% 70% at 50% 45%, rgba(27,27,27,0) 20%, rgba(27,27,27,0.75) 100%)",
           }}
         />
       </motion.div>
@@ -173,7 +173,7 @@ export default function AwarenessIntro() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-          className="text-[10px] uppercase tracking-[0.26em] font-semibold text-loom-gold/50 mb-16 sm:mb-20"
+          className="font-sans text-[10px] uppercase tracking-[0.26em] font-semibold text-loom-gold/50 mb-16 sm:mb-20"
         >
           WeaveFusion AI
         </motion.p>
@@ -195,8 +195,8 @@ export default function AwarenessIntro() {
                   y:       { duration: FADE_MS / 1000, ease: "easeOut" },
                 }}
                 className="absolute inset-0 flex items-center justify-center text-center
-                           text-3xl sm:text-4xl lg:text-5xl xl:text-6xl
-                           font-bold tracking-tight leading-tight text-loom-cream"
+                           font-display font-bold tracking-tight leading-tight text-loom-cream
+                           text-3xl sm:text-4xl lg:text-5xl xl:text-6xl"
               >
                 {STORY_LINES[activeIndex].text}
               </motion.p>
@@ -232,14 +232,15 @@ export default function AwarenessIntro() {
                       accent ? "border-loom-gold" : "border-loom-rust/50"
                     }`}
                   >
+                    {/* Stat number — Playfair Display for typographic weight */}
                     <p
-                      className={`text-3xl font-bold tabular-nums mb-1 ${
+                      className={`font-display text-3xl font-bold tabular-nums mb-1 ${
                         accent ? "text-loom-gold" : "text-loom-cream"
                       }`}
                     >
                       {label}
                     </p>
-                    <p className="text-xs text-loom-cream/45 leading-snug">{detail}</p>
+                    <p className="font-sans text-xs text-loom-cream/45 leading-snug">{detail}</p>
                   </motion.div>
                 ))}
               </div>
@@ -256,7 +257,7 @@ export default function AwarenessIntro() {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
       >
-        <span className="text-[9px] uppercase tracking-[0.25em] text-loom-cream/25 font-medium">
+        <span className="font-sans text-[9px] uppercase tracking-[0.25em] text-loom-cream/25 font-medium">
           scroll
         </span>
         <motion.div
