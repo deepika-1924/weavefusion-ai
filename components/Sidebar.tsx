@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { HANDLOOMS, type Handloom } from "@/lib/handlooms";
 import { WESTERN_STYLES, type WesternStyle } from "@/lib/styles";
 
@@ -69,22 +70,25 @@ export default function Sidebar({
             const active = stepNum === currentStep;
             return (
               <div key={label} className="flex items-center gap-1 min-w-0 flex-1">
-                <div
-                  className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors ${
-                    done
-                      ? "bg-loom-gold text-loom-ink"
+                <motion.div
+                  animate={{
+                    backgroundColor: done
+                      ? "#c8963e"
                       : active
-                      ? "bg-loom-rust text-white"
-                      : "bg-white/10 text-loom-cream/30"
-                  }`}
+                      ? "#b6502f"
+                      : "rgba(255,255,255,0.10)",
+                    color: done || active ? "#fff" : "rgba(244,236,221,0.3)",
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0"
                 >
                   {done ? "✓" : stepNum}
-                </div>
+                </motion.div>
                 {i < STEPS.length - 1 && (
-                  <div
-                    className={`h-px flex-1 transition-colors ${
-                      done ? "bg-loom-gold/60" : "bg-white/10"
-                    }`}
+                  <motion.div
+                    animate={{ backgroundColor: done ? "rgba(200,150,62,0.6)" : "rgba(255,255,255,0.10)" }}
+                    transition={{ duration: 0.35 }}
+                    className="h-px flex-1"
                   />
                 )}
               </div>
@@ -140,7 +144,7 @@ export default function Sidebar({
               placeholder="Search handlooms…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-loom-cream placeholder-loom-cream/25 focus:outline-none focus:border-loom-gold/50"
+              className="w-full border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-loom-cream placeholder-loom-cream/25 focus:outline-none focus:border-loom-gold/50 transition-colors"
               style={{ background: "rgba(255,255,255,0.06)" }}
             />
           </div>
@@ -183,30 +187,40 @@ export default function Sidebar({
                 filtered.map((h) => {
                   const active = selectedHandloom?.id === h.id;
                   return (
-                    <button
+                    <motion.button
                       key={h.id}
                       onClick={() => onSelectHandloom(h)}
-                      className={`text-left rounded-lg p-2 border transition-all ${
-                        active
-                          ? "border-loom-gold/60"
-                          : "border-white/8 hover:border-white/20"
-                      }`}
-                      style={{
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                      animate={{
+                        borderColor: active
+                          ? "rgba(200,150,62,0.6)"
+                          : "rgba(255,255,255,0.08)",
                         background: active
                           ? "rgba(255,255,255,0.10)"
                           : "rgba(255,255,255,0.04)",
                       }}
+                      className="text-left rounded-lg p-2 border"
                     >
                       <div className="flex items-center gap-1.5 mb-1">
                         <span
                           className="w-3 h-3 rounded-full shrink-0"
                           style={{ backgroundColor: h.swatchColor }}
                         />
-                        {active && (
-                          <span className="text-loom-gold text-[8px] font-bold">
-                            ✓
-                          </span>
-                        )}
+                        <AnimatePresence>
+                          {active && (
+                            <motion.span
+                              initial={{ opacity: 0, scale: 0.6 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.6 }}
+                              transition={{ duration: 0.2 }}
+                              className="text-loom-gold text-[8px] font-bold"
+                            >
+                              ✓
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
                       </div>
                       <p className="text-[11px] font-medium text-loom-cream leading-tight line-clamp-2">
                         {h.name}
@@ -214,7 +228,7 @@ export default function Sidebar({
                       <p className="text-[10px] text-loom-cream/35 mt-0.5 leading-tight truncate">
                         {h.region}
                       </p>
-                    </button>
+                    </motion.button>
                   );
                 })
               )}
@@ -247,21 +261,23 @@ export default function Sidebar({
               const active = selectedStyle?.id === s.id;
               return (
                 <li key={s.id}>
-                  <button
+                  <motion.button
                     onClick={() => onSelectStyle(s)}
-                    className={`w-full px-3 py-2 rounded-lg text-left text-sm transition-colors ${
-                      active
-                        ? "bg-loom-rust/80 text-loom-cream font-semibold"
-                        : "text-loom-cream/65 hover:text-loom-cream"
-                    }`}
-                    style={{
-                      background: active
-                        ? undefined
+                    whileHover={{ x: 3 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 24 }}
+                    animate={{
+                      backgroundColor: active
+                        ? "rgba(182,80,47,0.8)"
                         : "transparent",
+                      color: active
+                        ? "rgb(244,236,221)"
+                        : "rgba(244,236,221,0.65)",
                     }}
+                    className="w-full px-3 py-2 rounded-lg text-left text-sm font-medium transition-colors"
                   >
                     {s.name}
-                  </button>
+                  </motion.button>
                 </li>
               );
             })}
@@ -271,38 +287,49 @@ export default function Sidebar({
         {/* ── Step 3 — Generate (inline, always reachable by scrolling) */}
         <div className="px-4 pt-4 pb-6">
           {/* Weaving animation shown while loading */}
-          {loading && (
-            <div className="mb-3 flex flex-col items-center gap-2">
-              <div className="flex gap-1 items-end h-5">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <div
-                    key={i}
-                    className="w-1 bg-loom-gold rounded-full animate-pulse"
-                    style={{
-                      height: `${8 + (i % 3) * 5}px`,
-                      animationDelay: `${i * 120}ms`,
-                      animationDuration: "900ms",
-                    }}
-                  />
-                ))}
-              </div>
-              <p className="text-[11px] text-loom-cream/50 text-center">
-                Weaving your fusion look…
-              </p>
-            </div>
-          )}
+          <AnimatePresence>
+            {loading && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="mb-3 flex flex-col items-center gap-2 overflow-hidden"
+              >
+                <div className="flex gap-1 items-end h-5">
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="w-1 bg-loom-gold rounded-full animate-pulse"
+                      style={{
+                        height: `${8 + (i % 3) * 5}px`,
+                        animationDelay: `${i * 120}ms`,
+                        animationDuration: "900ms",
+                      }}
+                    />
+                  ))}
+                </div>
+                <p className="text-[11px] text-loom-cream/50 text-center">
+                  Weaving your fusion look…
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          <button
+          <motion.button
             onClick={onGenerate}
             disabled={!canGenerate}
+            whileHover={canGenerate ? { scale: 1.02 } : {}}
+            whileTap={canGenerate ? { scale: 0.97 } : {}}
+            transition={{ type: "spring", stiffness: 380, damping: 20 }}
             className={`w-full py-3 rounded-xl font-semibold text-sm tracking-wide transition-all ${
               canGenerate
-                ? "bg-loom-gold text-loom-ink hover:brightness-110 active:scale-[0.98]"
+                ? "bg-loom-gold text-loom-ink hover:brightness-110"
                 : "bg-white/10 text-loom-cream/25 cursor-not-allowed"
             }`}
           >
             {loading ? "Generating…" : "Step 3 · Generate Fusion"}
-          </button>
+          </motion.button>
 
           {!canGenerate && !loading && (
             <p className="text-[10px] text-loom-cream/25 text-center mt-1.5">

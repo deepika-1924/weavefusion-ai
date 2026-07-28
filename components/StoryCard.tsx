@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 interface StoryCardProps {
   story: string | null;
   ecoNote: string | null;
@@ -66,15 +68,27 @@ export default function StoryCard({
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-[#e5e7eb] p-6 flex flex-col gap-6 overflow-y-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="bg-white rounded-2xl border border-[#e5e7eb] p-6 flex flex-col gap-6 overflow-y-auto"
+    >
       {/* Heritage Story */}
-      <section>
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut", delay: 0.08 }}
+      >
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-xs font-semibold uppercase tracking-widest text-[#57606a]">
             Heritage Story
           </h3>
           {source && (
-            <span
+            <motion.span
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.35, delay: 0.2 }}
               className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
                 source === "watsonx"
                   ? "bg-loom-gold/20 text-loom-gold"
@@ -82,20 +96,29 @@ export default function StoryCard({
               }`}
             >
               {source === "watsonx" ? "IBM Granite" : "Built-in"}
-            </span>
+            </motion.span>
           )}
         </div>
         <p className="text-sm text-[#1f2328] leading-relaxed">{story}</p>
-      </section>
+      </motion.section>
 
       {/* Eco Scorecard */}
-      <section>
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut", delay: 0.18 }}
+      >
         <h3 className="text-xs font-semibold uppercase tracking-widest text-[#57606a] mb-3">
           Sustainability Scorecard
         </h3>
 
         {waterSavedLiters !== null && (
-          <div className="bg-loom-cream rounded-xl px-4 py-3 mb-3">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.28 }}
+            className="bg-loom-cream rounded-xl px-4 py-3 mb-3"
+          >
             <p className="text-[11px] text-[#57606a] uppercase tracking-wide font-semibold mb-1">
               Water Saved
             </p>
@@ -110,7 +133,7 @@ export default function StoryCard({
                 vs. {comparedTo}
               </p>
             )}
-          </div>
+          </motion.div>
         )}
 
         {ecoNote && (
@@ -118,13 +141,13 @@ export default function StoryCard({
             {ecoNote}
           </p>
         )}
-      </section>
+      </motion.section>
 
       {handloomName && (
         <p className="text-[11px] text-[#57606a]/50 border-t border-[#e5e7eb] pt-3">
           Fabric: {handloomName}
         </p>
       )}
-    </div>
+    </motion.div>
   );
 }

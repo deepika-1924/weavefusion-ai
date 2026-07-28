@@ -71,37 +71,65 @@ export default function HomePage() {
   return (
     <div className="bg-loom-cream">
 
-      {/* ── Section 1: Awareness intro ─────────────────────────────── */}
+      {/* ── Section 1: Cinematic hero ──────────────────────────────────── */}
       <AwarenessIntro />
 
-      {/* ── Section 2: Project theme ───────────────────────────────── */}
+      {/* ── Transition divider ─────────────────────────────────────────── */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="h-px bg-loom-ink/10 origin-left"
+      />
+
+      {/* ── Section 2: Bento stats + project theme ─────────────────────── */}
       <ProjectTheme />
 
-      {/* ── Section 3: The generator ───────────────────────────────── */}
+      {/* ── Transition divider ─────────────────────────────────────────── */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="h-px bg-loom-ink/10 origin-left"
+      />
+
+      {/* ── Section 3: The generator ───────────────────────────────────── */}
       <section className="bg-loom-cream">
 
-        {/* Section header */}
+        {/* Section header — slides in from bottom */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="px-6 pt-20 pb-10 sm:px-12 lg:px-24 max-w-3xl"
         >
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-xs uppercase tracking-[0.2em] font-semibold text-loom-rust/70 mb-4"
+          >
+            Try it yourself
+          </motion.p>
           <h2 className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-loom-ink">
             See it for yourself
           </h2>
           <p className="mt-4 text-base sm:text-lg leading-relaxed text-loom-ink/60 max-w-xl">
-            Pick a handloom, pick a silhouette, and see what choosing quality over quantity actually looks like.
+            Pick a handloom, pick a silhouette, and see what choosing quality
+            over quantity actually looks like.
           </p>
         </motion.div>
 
-        {/* 3-step generator — existing layout unchanged */}
+        {/* 3-step generator */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           className="flex h-screen overflow-hidden"
         >
           {/* Left sidebar */}
@@ -132,7 +160,10 @@ export default function HomePage() {
               </div>
 
               {result && (
-                <span
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
                   className={`text-[11px] px-3 py-1 rounded-full border font-medium ${
                     result.source === "watsonx"
                       ? "border-loom-gold/50 text-loom-gold bg-loom-gold/10"
@@ -142,15 +173,20 @@ export default function HomePage() {
                   {result.source === "watsonx"
                     ? "Powered by IBM Granite"
                     : "Powered by built-in data"}
-                </span>
+                </motion.span>
               )}
             </header>
 
             {/* Error banner */}
             {error && (
-              <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+              >
                 {error}
-              </div>
+              </motion.div>
             )}
 
             {/* Two-column canvas + story */}

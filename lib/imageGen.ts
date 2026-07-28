@@ -3,8 +3,15 @@ import type { WesternStyle } from "@/lib/styles";
 
 function buildGarmentPrompt(handloom: Handloom, style: WesternStyle): string {
   return (
-    `flat lay product photography of a ${style.promptFragment} made from ${handloom.texture}, ` +
-    `plain white background, no model, studio lighting, high detail`
+    `Professional fashion editorial photograph of a ${style.promptFragment} ` +
+    `crafted entirely from ${handloom.name} ${handloom.texture}, ` +
+    `featuring authentic handwoven fabric texture with visible warp and weft threads, ` +
+    `draped on a faceless mannequin against a pure white seamless studio backdrop, ` +
+    `shot with a 85mm lens, soft diffused key light from camera-left, subtle fill reflector on right, ` +
+    `crisp fabric detail rendering, true-to-life color accuracy, ` +
+    `ultra-high resolution commercial garment photography, ` +
+    `no background objects, no watermarks, no text overlays, no grain, no blur, ` +
+    `8k detail, hyperrealistic textile photography`
   );
 }
 
