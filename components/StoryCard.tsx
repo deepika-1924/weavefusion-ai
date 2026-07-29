@@ -9,6 +9,9 @@ interface StoryCardProps {
   handloomName: string | null;
   waterSavedLiters: number | null;
   comparedTo: string | null;
+  bestFor: string[] | null;
+  occasions: string[] | null;
+  stylingTip: string | null;
   loading: boolean;
 }
 
@@ -19,6 +22,9 @@ export default function StoryCard({
   handloomName,
   waterSavedLiters,
   comparedTo,
+  bestFor,
+  occasions,
+  stylingTip,
   loading,
 }: StoryCardProps) {
   if (loading) {
@@ -142,6 +148,39 @@ export default function StoryCard({
           </p>
         )}
       </motion.section>
+
+      {bestFor && bestFor.length > 0 && (
+        <div className="mt-5">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-[#57606a] mb-3">Style Recommendations</h3>
+          <div className="mb-3">
+            <p className="text-[11px] text-[#57606a] uppercase tracking-wide font-semibold mb-1.5">Best for</p>
+            <div className="flex flex-wrap gap-1.5">
+              {bestFor.map((item) => (
+                <span key={item} className="text-xs px-2.5 py-1 rounded-full bg-loom-cream text-[#57606a] border border-[#e5e7eb]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+          {occasions && occasions.length > 0 && (
+            <div className="mb-3">
+              <p className="text-[11px] text-[#57606a] uppercase tracking-wide font-semibold mb-1.5">Best occasions</p>
+              <div className="flex flex-wrap gap-1.5">
+                {occasions.map((item) => (
+                  <span key={item} className="text-xs px-2.5 py-1 rounded-full bg-loom-gold/10 text-loom-gold border border-loom-gold/30">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {stylingTip && (
+            <p className="text-sm text-[#1f2328] leading-relaxed border-l-2 border-loom-rust pl-3 italic">
+              {stylingTip}
+            </p>
+          )}
+        </div>
+      )}
 
       {handloomName && (
         <p className="text-[11px] text-[#57606a]/50 border-t border-[#e5e7eb] pt-3">

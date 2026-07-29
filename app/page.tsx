@@ -6,6 +6,7 @@ import type { Handloom } from "@/lib/handlooms";
 import type { WesternStyle } from "@/lib/styles";
 import Sidebar from "@/components/Sidebar";
 import StoryCard from "@/components/StoryCard";
+import { getStyleRecommendation } from "@/lib/styleRecommendations";
 import OutfitCanvas from "@/components/OutfitCanvas";
 import AwarenessIntro from "@/components/AwarenessIntro";
 import ProjectTheme from "@/components/ProjectTheme";
@@ -212,6 +213,9 @@ export default function HomePage() {
                 handloomName={result?.handloom.name ?? null}
                 waterSavedLiters={result?.handloom.ecoStats.waterSavedLiters ?? selectedHandloom?.ecoStats.waterSavedLiters ?? null}
                 comparedTo={result?.handloom.ecoStats.comparedTo ?? selectedHandloom?.ecoStats.comparedTo ?? null}
+                bestFor={selectedHandloom ? getStyleRecommendation(selectedHandloom).bestFor : null}
+                occasions={selectedHandloom ? getStyleRecommendation(selectedHandloom).occasions : null}
+                stylingTip={selectedHandloom ? getStyleRecommendation(selectedHandloom).stylingTip : null}
                 loading={loading}
               />
             </div>
