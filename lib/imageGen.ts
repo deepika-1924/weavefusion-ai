@@ -56,7 +56,12 @@ export async function generateGarmentImage(
   style: WesternStyle
 ): Promise<string> {
   if (process.env.REPLICATE_API_TOKEN) {
-    return garmentViaReplicate(handloom, style);
+    try {
+      return await garmentViaReplicate(handloom, style);
+    } catch (err) {
+      console.error("Replicate image generation failed, falling back to Pollinations:", err);
+    }
   }
   return garmentViaPollinations(handloom, style);
+
 }
