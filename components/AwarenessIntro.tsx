@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+
+// ── HeroScene loaded client-only (Three.js cannot run in SSR) ────────────────
+const HeroScene = dynamic(() => import("./HeroScene"), { ssr: false });
+const HandloomGallery = dynamic(() => import("./HandloomGallery"), { ssr: false });
 
 // ── Narrative lines — max ~6 words each ──────────────────────────────────────
 // hold = how long (ms) the line is displayed at full opacity before exit begins
@@ -114,6 +119,13 @@ export default function AwarenessIntro() {
   const sectionRef = useRef<HTMLElement>(null);
   const { activeIndex, statsVisible } = useSequence();
 
+  // Detect mobile once on mount to pass reduced particle count into the scene.
+  // Using state so it only runs client-side (window is undefined during SSR).
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+  }, []);
+
   // Parallax: background drifts at 30% scroll speed, content at 12%
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -129,11 +141,21 @@ export default function AwarenessIntro() {
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-loom-ink"
     >
 
+      {/* ── R3F particle scene — sits at z-0 behind all content ───────── */}
+      {/* pointer-events-none so it never intercepts clicks/touches       */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
+        <HeroScene isMobile={isMobile} />
+      <HandloomGallery />
+      </div>
+
       {/* ── Parallax textile-grid background ──────────────────────────── */}
       <motion.div
         style={{ y: bgY }}
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 z-[1] pointer-events-none"
       >
         {/* Woven grid — pure CSS, royal gold threads */}
         <div
