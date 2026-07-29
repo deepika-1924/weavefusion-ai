@@ -206,12 +206,12 @@ export default function HomePage() {
 
               {/* Right: story + eco scorecard */}
               <StoryCard
-                story={result?.story ?? null}
-                ecoNote={result?.ecoNote ?? null}
-                source={result?.source ?? null}
+                story={result?.story ?? selectedHandloom?.story ?? null}
+                ecoNote={result?.ecoNote ?? (selectedHandloom ? `${selectedHandloom.ecoStats.carbonNote} Choosing ${selectedHandloom.name} over fast fashion saves approximately ${selectedHandloom.ecoStats.waterSavedLiters.toLocaleString()} liters of water compared to ${selectedHandloom.ecoStats.comparedTo}.` : null)}
+                source={result?.source ?? (selectedHandloom ? "fallback" : null)}
                 handloomName={result?.handloom.name ?? null}
-                waterSavedLiters={result?.handloom.ecoStats.waterSavedLiters ?? null}
-                comparedTo={result?.handloom.ecoStats.comparedTo ?? null}
+                waterSavedLiters={result?.handloom.ecoStats.waterSavedLiters ?? selectedHandloom?.ecoStats.waterSavedLiters ?? null}
+                comparedTo={result?.handloom.ecoStats.comparedTo ?? selectedHandloom?.ecoStats.comparedTo ?? null}
                 loading={loading}
               />
             </div>
