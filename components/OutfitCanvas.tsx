@@ -160,6 +160,9 @@ export default function OutfitCanvas({
                 </>
               )}
             </p>
+            <p className="text-[10px] text-loom-cream/40 italic leading-snug mt-1 max-w-[220px]">
+              AI concept visualization, an approximate interpretation rather than a literal fabric replica. See Style Recommendations above for authentic weave details.
+            </p>
             <a
               href={imageUrl}
               target="_blank"
