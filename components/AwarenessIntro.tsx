@@ -195,7 +195,7 @@ export default function AwarenessIntro() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-          className="font-sans text-[10px] uppercase tracking-[0.26em] font-semibold text-loom-gold/50 mb-16 sm:mb-20"
+          className="font-sans text-lg sm:text-2xl uppercase tracking-[0.26em] font-bold text-loom-gold mb-16 sm:mb-20"
         >
           WeaveFusion AI
         </motion.p>
