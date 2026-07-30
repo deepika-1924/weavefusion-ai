@@ -20,7 +20,7 @@ Instead of pre-rendering a fixed image library, WeaveFusion AI generates each ou
 
 ### 3-Minute Video Presentation Link
 
-<paste video link here>
+https://youtu.be/n8iN2E_nO9s
 
 ### IBM SkillsBuild Completion Certificate
 
