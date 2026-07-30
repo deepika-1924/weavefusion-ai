@@ -6,6 +6,8 @@ WeaveFusion AI is a generative design sandbox that fuses India's 104 GI-tagged h
 
 **GitHub:** https://github.com/deepika-1924/weavefusion-ai
 
+**Live Demo:** https://weavefusion-ai.vercel.app
+
 ---
 
 ### The Issue
