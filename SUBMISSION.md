@@ -24,7 +24,7 @@ Instead of pre-rendering a fixed image library, WeaveFusion AI generates each ou
 
 ### IBM SkillsBuild Completion Certificate
 
-<upload PDF or paste public link here>
+https://skills.yourlearning.ibm.com/certificate/share/fd4891e7abewogICJsZWFybmVyQ05VTSIgOiAiODExMTYxMVJFRyIsCiAgIm9iamVjdFR5cGUiIDogIkFDVElWSVRZIiwKICAib2JqZWN0SWQiIDogIkFMTS1DT1VSU0VfNDA3MTMwNyIKfQf4c3a08160-10
 
 ### Our Team
 
